@@ -1,0 +1,18 @@
+<testsuites name="Mocha Tests">
+  <testsuite name="User" tests="7" errors="0" failures="0" skipped="0" timestamp="2019-07-29T07:48:35" time="0.079">
+    <testcase classname="User" name="should return a 200 response" time="0.005">
+    </testcase>
+    <testcase classname="User" name="should be an object with keys and values" time="0.004">
+    </testcase>
+    <testcase classname="User" name="should have a 10 digit phone number" time="0.003">
+    </testcase>
+    <testcase classname="User" name="should have the role of admin" time="0.002">
+    </testcase>
+    <testcase classname="User" name="should be updated with a new name" time="0.003">
+    </testcase>
+    <testcase classname="User" name="should access their own locations" time="0.003">
+    </testcase>
+    <testcase classname="User" name="should not be able to access other users locations" time="0.004">
+    </testcase>
+  </testsuite>
+</testsuites>
