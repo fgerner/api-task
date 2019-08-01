@@ -3,7 +3,7 @@ var should = require('chai').should(),
     supertest = require('supertest'),
     api = supertest('http://localhost:3000');
 
-describe('User', function () {
+xdescribe('User', function () {
 
     var location1;
     var location2;
