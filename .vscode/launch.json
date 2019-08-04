@@ -7,23 +7,19 @@
     {
       "type": "node",
       "request": "launch",
-      "name": "Mocha Tests",
-      "program": "${workspaceFolder}/node_modules/mocha/bin/_mocha",
-      "args": [
-        "-u",
-        "tdd",
-        "--timeout",
-        "999999",
-        "--colors",
-        "${workspaceFolder}/test"
+      "name": "Launch via NPM",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": [
+        "run-script",
+        "test:preview"
       ],
-      "internalConsoleOptions": "openOnSessionStart"
+      "port": 9229
     },
     {
       "type": "node",
       "request": "launch",
       "name": "Mocha Tests",
-      "program": "${workspaceFolder}/node_modules/mocha/bin/_mocha",
+      "program": "${workspaceFolder}/node_modules/mocha/bin/mocha",
       "args": [
         "-u",
         "tdd",
@@ -34,5 +30,6 @@
       ],
       "internalConsoleOptions": "openOnSessionStart"
     }
+    
   ]
 }

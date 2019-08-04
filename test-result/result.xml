@@ -1,85 +1,62 @@
 <testsuites name="Mocha Tests">
-  <testsuite name="bank endpoint," tests="2" errors="0" failures="0" skipped="0" timestamp="2019-08-03T06:14:31" time="0.299">
-    <testcase classname="bank endpoint," name="should return a success message" time="0.254">
+  <testsuite name="bank endpoint," tests="2" errors="0" failures="0" skipped="0" timestamp="2019-08-04T03:25:11" time="0.111">
+    <testcase classname="bank endpoint," name="should return a success message" time="0.065">
     </testcase>
     <testcase classname="bank endpoint," name="should be able to use LOCAL payment method" time="0.042">
     </testcase>
   </testsuite>
-  <testsuite name="bank endpoint, status code" tests="2" errors="0" failures="0" skipped="0" timestamp="2019-08-03T06:14:32" time="0.082">
-    <testcase classname="bank endpoint, status code" name="should return a 200 response" time="0.04">
+  <testsuite name="bank endpoint, status code" tests="2" errors="0" failures="0" skipped="0" timestamp="2019-08-04T03:25:12" time="0.082">
+    <testcase classname="bank endpoint, status code" name="should return a 200 response" time="0.041">
     </testcase>
-    <testcase classname="bank endpoint, status code" name="should return a 400 response" time="0.041">
-    </testcase>
-  </testsuite>
-  <testsuite name="bank endpoint, error message" tests="5" errors="0" failures="1" skipped="0" timestamp="2019-08-03T06:14:32" time="0.208">
-    <testcase classname="bank endpoint, error message" name="account number is missing" time="0.045">
-    </testcase>
-    <testcase classname="bank endpoint, error message" name="aba code is missing for bank country US" time="0.04">
-      <failure message="expected 400 &quot;Bad Request&quot;, got 200 &quot;OK&quot;">    at Test._assertStatus (node_modules/supertest/lib/test.js:268:12)
-    at Test._assertFunction (node_modules/supertest/lib/test.js:283:11)
-    at Test.assert (node_modules/supertest/lib/test.js:173:18)
-    at localAssert (node_modules/supertest/lib/test.js:131:12)
-    at /Users/fredgerner/workplace/airwallex/api-test/node_modules/supertest/lib/test.js:128:5
-    at Test.Request.callback (node_modules/superagent/lib/node/index.js:716:12)
-    at parser (node_modules/superagent/lib/node/index.js:916:18)
-    at IncomingMessage.res.on (node_modules/superagent/lib/node/parsers/json.js:19:7)
-    at endReadableNT (_stream_readable.js:1064:12)
-    at _combinedTickCallback (internal/process/next_tick.js:138:11)
-    at process._tickCallback (internal/process/next_tick.js:180:9)</failure>
-    </testcase>
-    <testcase classname="bank endpoint, error message" name="bsb code is missing for bank country AU" time="0.041">
-    </testcase>
-    <testcase classname="bank endpoint, error message" name="country code is missing" time="0.039">
-    </testcase>
-    <testcase classname="bank endpoint, error message" name="account name is missing" time="0.04">
+    <testcase classname="bank endpoint, status code" name="should return a 400 response" time="0.04">
     </testcase>
   </testsuite>
-  <testsuite name="bank endpoint, error message account number length" tests="3" errors="0" failures="3" skipped="0" timestamp="2019-08-03T06:14:32" time="0.119">
-    <testcase classname="bank endpoint, error message account number length" name="account number too long US" time="0">
-      <failure message="expected &apos;{&quot;error&quot;:&quot;Length of account_number should be between 7 and 11 when bank_country_code is \&apos;US\&apos;&quot;}&apos; to include &apos;Length of account_number should be between 1 and 17 when bank_country_code is \&apos;US\&apos;&apos;">    at Test.&lt;anonymous&gt; (test/bank_test.js:199:39)
-    at Test.assert (node_modules/supertest/lib/test.js:181:6)
-    at localAssert (node_modules/supertest/lib/test.js:131:12)
-    at /Users/fredgerner/workplace/airwallex/api-test/node_modules/supertest/lib/test.js:128:5
-    at Test.Request.callback (node_modules/superagent/lib/node/index.js:728:3)
-    at parser (node_modules/superagent/lib/node/index.js:916:18)
-    at IncomingMessage.res.on (node_modules/superagent/lib/node/parsers/json.js:19:7)
-    at endReadableNT (_stream_readable.js:1064:12)
-    at _combinedTickCallback (internal/process/next_tick.js:138:11)
-    at process._tickCallback (internal/process/next_tick.js:180:9)</failure>
+  <testsuite name="bank endpoint, should return error message" tests="5" errors="0" failures="1" skipped="0" timestamp="2019-08-04T03:25:12" time="0.207">
+    <testcase classname="bank endpoint, should return error message" name="when account number is missing" time="0.041">
     </testcase>
-    <testcase classname="bank endpoint, error message account number length" name="account number too short for AU" time="0">
-      <failure message="expected &apos;{&quot;error&quot;:&quot;Length of account_number should be between 7 and 11 when bank_country_code is \&apos;US\&apos;&quot;}&apos; to include &apos;Length of account_number should be between 6 and 9 when bank_country_code is \&apos;AU\&apos;&apos;">    at Test.&lt;anonymous&gt; (test/bank_test.js:221:39)
-    at Test.assert (node_modules/supertest/lib/test.js:181:6)
-    at localAssert (node_modules/supertest/lib/test.js:131:12)
-    at /Users/fredgerner/workplace/airwallex/api-test/node_modules/supertest/lib/test.js:128:5
-    at Test.Request.callback (node_modules/superagent/lib/node/index.js:728:3)
-    at parser (node_modules/superagent/lib/node/index.js:916:18)
-    at IncomingMessage.res.on (node_modules/superagent/lib/node/parsers/json.js:19:7)
-    at endReadableNT (_stream_readable.js:1064:12)
-    at _combinedTickCallback (internal/process/next_tick.js:138:11)
-    at process._tickCallback (internal/process/next_tick.js:180:9)</failure>
+    <testcase classname="bank endpoint, should return error message" name="when aba code is missing for bank country code US" time="0.041">
+      <failure message="expected 400 &quot;Bad Request&quot;, got 200 &quot;OK&quot;"></failure>
     </testcase>
-    <testcase classname="bank endpoint, error message account number length" name="account number too long for AU" time="0">
-      <failure message="expected &apos;{&quot;error&quot;:&quot;Length of account_number should be between 7 and 11 when bank_country_code is \&apos;US\&apos;&quot;}&apos; to include &apos;Length of account_number should be between 6 and 9 when bank_country_code is \&apos;AU\&apos;&apos;">    at Test.&lt;anonymous&gt; (test/bank_test.js:243:39)
-    at Test.assert (node_modules/supertest/lib/test.js:181:6)
-    at localAssert (node_modules/supertest/lib/test.js:131:12)
-    at /Users/fredgerner/workplace/airwallex/api-test/node_modules/supertest/lib/test.js:128:5
-    at Test.Request.callback (node_modules/superagent/lib/node/index.js:728:3)
-    at parser (node_modules/superagent/lib/node/index.js:916:18)
-    at IncomingMessage.res.on (node_modules/superagent/lib/node/parsers/json.js:19:7)
-    at endReadableNT (_stream_readable.js:1064:12)
-    at _combinedTickCallback (internal/process/next_tick.js:138:11)
-    at process._tickCallback (internal/process/next_tick.js:180:9)</failure>
+    <testcase classname="bank endpoint, should return error message" name="when aba code is too long for bank country code US" time="0.042">
+    </testcase>
+    <testcase classname="bank endpoint, should return error message" name="when bsb code is missing for bank country code AU" time="0.037">
+    </testcase>
+    <testcase classname="bank endpoint, should return error message" name="when country code is missing" time="0.041">
     </testcase>
   </testsuite>
-  <testsuite name="bank endpoint, error message SWIFT code" tests="4" errors="0" failures="0" skipped="0" timestamp="2019-08-03T06:14:32" time="0.154">
-    <testcase classname="bank endpoint, error message SWIFT code" name="SWIFT code is missing" time="0.038">
+  <testsuite name="bank endpoint, should return error message when account name is" tests="3" errors="0" failures="0" skipped="0" timestamp="2019-08-04T03:25:12" time="0.124">
+    <testcase classname="bank endpoint, should return error message when account name is" name="missing" time="0.041">
     </testcase>
-    <testcase classname="bank endpoint, error message SWIFT code" name="SWIFT code is incorrect" time="0.037">
+    <testcase classname="bank endpoint, should return error message when account name is" name="too long" time="0.042">
     </testcase>
-    <testcase classname="bank endpoint, error message SWIFT code" name="SWIFT code is too long" time="0.038">
+    <testcase classname="bank endpoint, should return error message when account name is" name="too short" time="0.039">
     </testcase>
-    <testcase classname="bank endpoint, error message SWIFT code" name="SWIFT code is too short" time="0.038">
+  </testsuite>
+  <testsuite name="bank endpoint, should return error message when account number is too" tests="5" errors="0" failures="5" skipped="0" timestamp="2019-08-04T03:25:12" time="0.203">
+    <testcase classname="bank endpoint, should return error message when account number is too" name="long for bank country code US" time="0">
+      <failure message="expected &apos;{&quot;error&quot;:&quot;Length of account_number should be between 7 and 11 when bank_country_code is \&apos;US\&apos;&quot;}&apos; to include &apos;Length of account_number should be between 1 and 17 when bank_country_code is \&apos;US\&apos;&apos;"></failure>
+    </testcase>
+    <testcase classname="bank endpoint, should return error message when account number is too" name="short for bank country code AU" time="0">
+      <failure message="expected &apos;{&quot;error&quot;:&quot;Length of account_number should be between 7 and 11 when bank_country_code is \&apos;US\&apos;&quot;}&apos; to include &apos;Length of account_number should be between 6 and 9 when bank_country_code is \&apos;AU\&apos;&apos;"></failure>
+    </testcase>
+    <testcase classname="bank endpoint, should return error message when account number is too" name="long  for bank country code AU" time="0">
+      <failure message="expected &apos;{&quot;error&quot;:&quot;Length of account_number should be between 7 and 11 when bank_country_code is \&apos;US\&apos;&quot;}&apos; to include &apos;Length of account_number should be between 6 and 9 when bank_country_code is \&apos;AU\&apos;&apos;"></failure>
+    </testcase>
+    <testcase classname="bank endpoint, should return error message when account number is too" name="short for bank country code CN" time="0.041">
+      <failure message="expected 400 &quot;Bad Request&quot;, got 200 &quot;OK&quot;"></failure>
+    </testcase>
+    <testcase classname="bank endpoint, should return error message when account number is too" name="long  for bank country code CN" time="0">
+      <failure message="expected &apos;{&quot;error&quot;:&quot;Length of account_number should be between 7 and 11 when bank_country_code is \&apos;US\&apos;&quot;}&apos; to include &apos;Length of account_number should be between 8 and 20 when bank_country_code is \&apos;CN\&apos;&apos;"></failure>
+    </testcase>
+  </testsuite>
+  <testsuite name="bank endpoint, should return error message for SWIFT code" tests="4" errors="0" failures="0" skipped="0" timestamp="2019-08-04T03:25:12" time="0.164">
+    <testcase classname="bank endpoint, should return error message for SWIFT code" name="is missing" time="0.041">
+    </testcase>
+    <testcase classname="bank endpoint, should return error message for SWIFT code" name="is incorrect" time="0.042">
+    </testcase>
+    <testcase classname="bank endpoint, should return error message for SWIFT code" name="is too long" time="0.038">
+    </testcase>
+    <testcase classname="bank endpoint, should return error message for SWIFT code" name="is too short" time="0.041">
     </testcase>
   </testsuite>
 </testsuites>

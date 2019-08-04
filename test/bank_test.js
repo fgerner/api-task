@@ -1,7 +1,6 @@
 var supertest = require('supertest'),
   expect = require('chai').expect,
-api = supertest(`http://preview.airwallex.com:30001`);
-// api = supertest(`http://${NODE_ENV}.airwallex.com:30001`);
+  api = supertest(`http://${process.env.NODE_ENV}.airwallex.com:30001`);
 
 describe('bank endpoint,', function () {
   it('should return a success message', function (done) {
@@ -76,8 +75,8 @@ describe('bank endpoint,', function () {
         .expect(400, done)
     })
   })
-  describe('error message', function () {
-    it('account number is missing', function (done) {
+  describe('should return error message', function () {
+    it('when account number is missing', function (done) {
       api.post('/bank')
         .set({
           'Cache-Control': 'no-cache',
@@ -98,7 +97,7 @@ describe('bank endpoint,', function () {
           done();
         })
     })
-    it('aba code is missing for bank country US', function (done) {
+    it('when aba code is missing for bank country code US', function (done) {
       api.post('/bank')
         .set({
           'Cache-Control': 'no-cache',
@@ -118,7 +117,28 @@ describe('bank endpoint,', function () {
           done();
         })
     })
-    it('bsb code is missing for bank country AU', function (done) {
+    it('when aba code is too long for bank country code US', function (done) {
+      api.post('/bank')
+        .set({
+          'Cache-Control': 'no-cache',
+          'Content-Type': 'application/json'
+        })
+        .send({
+          'payment_method': 'SWIFT',
+          "bank_country_code": "US",
+          "account_name": "John Smith",
+          "account_number": "123",
+          "swift_code": "ICBCUSBJ",
+          "aba": "11122233AX"
+        })
+        .expect(400)
+        .end(function (err, res) {
+          if (err) return done(err);
+          expect(res.error.text).to.contain("Length of 'aba' should be 9");
+          done();
+        })
+    })
+    it('when bsb code is missing for bank country code AU', function (done) {
       api.post('/bank')
         .set({
           'Cache-Control': 'no-cache',
@@ -138,7 +158,7 @@ describe('bank endpoint,', function () {
           done();
         })
     })
-    it('country code is missing', function (done) {
+    it('when country code is missing', function (done) {
       api.post('/bank')
         .set({
           'Cache-Control': 'no-cache',
@@ -157,29 +177,73 @@ describe('bank endpoint,', function () {
           done();
         })
     })
-    it('account name is missing', function (done) {
-      api.post('/bank')
-        .set({
-          'Cache-Control': 'no-cache',
-          'Content-Type': 'application/json'
-        })
-        .send({
-          'payment_method': 'SWIFT',
-          "bank_country_code": "US",
-          // "account_name": "John Smith",
-          "account_number": "123",
-          "swift_code": "ICBCUSBJ",
-          "aba": "11122233A"
-        })
-        .expect(400)
-        .end(function (err, res) {
-          if (err) return done(err);
-          expect(res.error.text).to.contain("account_name' is required");
-          done();
-        })
+    describe('when account name is', function () {
+      it('missing', function (done) {
+        api.post('/bank')
+          .set({
+            'Cache-Control': 'no-cache',
+            'Content-Type': 'application/json'
+          })
+          .send({
+            'payment_method': 'SWIFT',
+            "bank_country_code": "US",
+            // "account_name": "John Smith",
+            "account_number": "123",
+            "swift_code": "ICBCUSBJ",
+            "aba": "11122233A"
+          })
+          .expect(400)
+          .end(function (err, res) {
+            if (err) return done(err);
+            expect(res.error.text).to.contain("account_name' is required");
+            done();
+          })
+      })
+      it('too long', function (done) {
+        api.post('/bank')
+          .set({
+            'Cache-Control': 'no-cache',
+            'Content-Type': 'application/json'
+          })
+          .send({
+            'payment_method': 'SWIFT',
+            "bank_country_code": "US",
+            "account_name": "John SmithS",
+            "account_number": "123",
+            "swift_code": "ICBCUSBJ",
+            "aba": "11122233A"
+          })
+          .expect(400)
+          .end(function (err, res) {
+            if (err) return done(err);
+            expect(res.error.text).to.contain("Length of account_name should be between 2 and 10");
+            done();
+          })
+      })
+      it('too short', function (done) {
+        api.post('/bank')
+          .set({
+            'Cache-Control': 'no-cache',
+            'Content-Type': 'application/json'
+          })
+          .send({
+            'payment_method': 'SWIFT',
+            "bank_country_code": "US",
+            "account_name": "J",
+            "account_number": "123",
+            "swift_code": "ICBCUSBJ",
+            "aba": "11122233A"
+          })
+          .expect(400)
+          .end(function (err, res) {
+            if (err) return done(err);
+            expect(res.error.text).to.contain("Length of account_name should be between 2 and 10");
+            done();
+          })
+      })
     })
-    describe('account number length', function () {
-      it('account number too long US', function (done) {
+    describe('when account number is too', function () {
+      it('long for bank country code US', function (done) {
         api.post('/bank')
           .set({
             'Cache-Control': 'no-cache',
@@ -200,7 +264,7 @@ describe('bank endpoint,', function () {
             done();
           })
       })
-      it('account number too short for AU', function (done) {
+      it('short for bank country code AU', function (done) {
         api.post('/bank')
           .set({
             'Cache-Control': 'no-cache',
@@ -222,7 +286,7 @@ describe('bank endpoint,', function () {
             done();
           })
       })
-      it('account number too long for AU', function (done) {
+      it('long  for bank country code AU', function (done) {
         api.post('/bank')
           .set({
             'Cache-Control': 'no-cache',
@@ -244,9 +308,53 @@ describe('bank endpoint,', function () {
             done();
           })
       })
+      it('short for bank country code CN', function (done) {
+        api.post('/bank')
+          .set({
+            'Cache-Control': 'no-cache',
+            'Content-Type': 'application/json'
+          })
+          .send({
+            'payment_method': 'SWIFT',
+            "bank_country_code": "CN",
+            "account_name": "John Smith",
+            "account_number": "1234567",
+            "swift_code": "ICBCCNBJ",
+            "aba": "11122233A",
+            "bsb": "123456"
+          })
+          .expect(400)
+          .end(function (err, res) {
+            if (err) return done(err);
+            expect(res.error.text).to.contain("Length of account_number should be between 8 and 20 when bank_country_code is \'CN\'");
+            done();
+          })
+      })
+      it('long  for bank country code CN', function (done) {
+        api.post('/bank')
+          .set({
+            'Cache-Control': 'no-cache',
+            'Content-Type': 'application/json'
+          })
+          .send({
+            'payment_method': 'SWIFT',
+            "bank_country_code": "CN",
+            "account_name": "John Smith",
+            "account_number": "123456789012345678901",
+            "swift_code": "ICBCCNBJ",
+            "aba": "11122233A",
+            "bsb": "123456"
+          })
+          .expect(400)
+          .end(function (err, res) {
+            if (err) return done(err);
+            expect(res.error.text).to.contain("Length of account_number should be between 8 and 20 when bank_country_code is \'CN\'");
+            done();
+          })
+      })
     })
-    describe('SWIFT code', function () {
-      it('SWIFT code is missing', function (done) {
+    describe('for SWIFT code', function () {
+      it('is missing', function (done) {
         api.post('/bank')
           .set({
             'Cache-Control': 'no-cache',
@@ -267,7 +375,7 @@ describe('bank endpoint,', function () {
             done();
           })
       })
-      it('SWIFT code is incorrect', function (done) {
+      it('is incorrect', function (done) {
         api.post('/bank')
           .set({
             'Cache-Control': 'no-cache',
@@ -289,7 +397,7 @@ describe('bank endpoint,', function () {
             done();
           })
       })
-      it('SWIFT code is too long', function (done) {
+      it('is too long', function (done) {
         api.post('/bank')
           .set({
             'Cache-Control': 'no-cache',
@@ -310,7 +418,7 @@ describe('bank endpoint,', function () {
             done();
           })
       })
-      it('SWIFT code is too short', function (done) {
+      it('is too short', function (done) {
         api.post('/bank')
           .set({
             'Cache-Control': 'no-cache',
