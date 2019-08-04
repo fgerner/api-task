@@ -1,7 +1,7 @@
 # api-test-task
 
-Prerequisites
-  Node
+Prerequisites:
+  Node,
   Mocha
 
 #Install
