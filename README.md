@@ -4,7 +4,7 @@ Prerequisites
   Node
   Mocha
 
-#Install
+# Install
 
 Clone this repo
 
@@ -18,7 +18,7 @@ Install
 
 `npm install`
 
-#Run Tests
+# Run Tests
 - Preview site
 
 `npm run test:preview`

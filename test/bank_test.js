@@ -1,3 +1,5 @@
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
+
 var supertest = require('supertest'),
   expect = require('chai').expect,
   api = supertest(`http://${process.env.NODE_ENV}.airwallex.com:30001`);
