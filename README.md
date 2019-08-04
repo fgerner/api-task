@@ -1,7 +1,7 @@
 # api-test-task
 
-Prerequisites
-  Node
+Prerequisites:
+  Node,
   Mocha
 
 # Install
@@ -23,7 +23,7 @@ Install
 
 `npm run test:preview`
 
-- Demo site //Needs configuration uppdate, enpoint wasn't responding. And will require SSL certificate
+- Demo site //Needs configuration uppdate, endpoint wasn't responding. And will require SSL certificate
 
 `npm run test:demo`
 
