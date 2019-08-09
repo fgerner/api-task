@@ -1,38 +1,39 @@
 <testsuites name="Mocha Tests">
-  <testsuite name="bank endpoint," tests="2" errors="0" failures="0" skipped="0" timestamp="2019-08-04T03:25:11" time="0.111">
-    <testcase classname="bank endpoint," name="should return a success message" time="0.065">
+  <testsuite name="bank endpoint," tests="2" errors="0" failures="0" skipped="0" timestamp="2019-08-07T07:38:17" time="1.036">
+    <testcase classname="bank endpoint," name="should return a success message" time="0.905">
     </testcase>
-    <testcase classname="bank endpoint," name="should be able to use LOCAL payment method" time="0.042">
-    </testcase>
-  </testsuite>
-  <testsuite name="bank endpoint, status code" tests="2" errors="0" failures="0" skipped="0" timestamp="2019-08-04T03:25:12" time="0.082">
-    <testcase classname="bank endpoint, status code" name="should return a 200 response" time="0.041">
-    </testcase>
-    <testcase classname="bank endpoint, status code" name="should return a 400 response" time="0.04">
+    <testcase classname="bank endpoint," name="should be able to use LOCAL payment method" time="0.127">
     </testcase>
   </testsuite>
-  <testsuite name="bank endpoint, should return error message" tests="5" errors="0" failures="1" skipped="0" timestamp="2019-08-04T03:25:12" time="0.207">
-    <testcase classname="bank endpoint, should return error message" name="when account number is missing" time="0.041">
+  <testsuite name="bank endpoint, status code" tests="2" errors="0" failures="0" skipped="0" timestamp="2019-08-07T07:38:18" time="0.274">
+    <testcase classname="bank endpoint, status code" name="should return a 200 response" time="0.133">
     </testcase>
-    <testcase classname="bank endpoint, should return error message" name="when aba code is missing for bank country code US" time="0.041">
+    <testcase classname="bank endpoint, status code" name="should return a 400 response" time="0.139">
+    </testcase>
+  </testsuite>
+  <testsuite name="bank endpoint, should return error message" tests="5" errors="0" failures="2" skipped="0" timestamp="2019-08-07T07:38:18" time="2.399">
+    <testcase classname="bank endpoint, should return error message" name="when account number is missing" time="1.765">
+    </testcase>
+    <testcase classname="bank endpoint, should return error message" name="when aba code is missing for bank country code US" time="0.174">
       <failure message="expected 400 &quot;Bad Request&quot;, got 200 &quot;OK&quot;"></failure>
     </testcase>
-    <testcase classname="bank endpoint, should return error message" name="when aba code is too long for bank country code US" time="0.042">
+    <testcase classname="bank endpoint, should return error message" name="when aba code is too long for bank country code US" time="0.161">
     </testcase>
-    <testcase classname="bank endpoint, should return error message" name="when bsb code is missing for bank country code AU" time="0.037">
+    <testcase classname="bank endpoint, should return error message" name="when bsb code is missing for bank country code AU" time="0.152">
     </testcase>
-    <testcase classname="bank endpoint, should return error message" name="when country code is missing" time="0.041">
-    </testcase>
-  </testsuite>
-  <testsuite name="bank endpoint, should return error message when account name is" tests="3" errors="0" failures="0" skipped="0" timestamp="2019-08-04T03:25:12" time="0.124">
-    <testcase classname="bank endpoint, should return error message when account name is" name="missing" time="0.041">
-    </testcase>
-    <testcase classname="bank endpoint, should return error message when account name is" name="too long" time="0.042">
-    </testcase>
-    <testcase classname="bank endpoint, should return error message when account name is" name="too short" time="0.039">
+    <testcase classname="bank endpoint, should return error message" name="when country code is missing" time="0">
+      <failure message="print is not defined"></failure>
     </testcase>
   </testsuite>
-  <testsuite name="bank endpoint, should return error message when account number is too" tests="5" errors="0" failures="5" skipped="0" timestamp="2019-08-04T03:25:12" time="0.203">
+  <testsuite name="bank endpoint, should return error message when account name is" tests="3" errors="0" failures="0" skipped="0" timestamp="2019-08-07T07:38:21" time="0.699">
+    <testcase classname="bank endpoint, should return error message when account name is" name="missing" time="0.15">
+    </testcase>
+    <testcase classname="bank endpoint, should return error message when account name is" name="too long" time="0.138">
+    </testcase>
+    <testcase classname="bank endpoint, should return error message when account name is" name="too short" time="0.41">
+    </testcase>
+  </testsuite>
+  <testsuite name="bank endpoint, should return error message when account number is too" tests="5" errors="0" failures="5" skipped="0" timestamp="2019-08-07T07:38:21" time="2.496">
     <testcase classname="bank endpoint, should return error message when account number is too" name="long for bank country code US" time="0">
       <failure message="expected &apos;{&quot;error&quot;:&quot;Length of account_number should be between 7 and 11 when bank_country_code is \&apos;US\&apos;&quot;}&apos; to include &apos;Length of account_number should be between 1 and 17 when bank_country_code is \&apos;US\&apos;&apos;"></failure>
     </testcase>
@@ -42,21 +43,21 @@
     <testcase classname="bank endpoint, should return error message when account number is too" name="long  for bank country code AU" time="0">
       <failure message="expected &apos;{&quot;error&quot;:&quot;Length of account_number should be between 7 and 11 when bank_country_code is \&apos;US\&apos;&quot;}&apos; to include &apos;Length of account_number should be between 6 and 9 when bank_country_code is \&apos;AU\&apos;&apos;"></failure>
     </testcase>
-    <testcase classname="bank endpoint, should return error message when account number is too" name="short for bank country code CN" time="0.041">
+    <testcase classname="bank endpoint, should return error message when account number is too" name="short for bank country code CN" time="0.495">
       <failure message="expected 400 &quot;Bad Request&quot;, got 200 &quot;OK&quot;"></failure>
     </testcase>
     <testcase classname="bank endpoint, should return error message when account number is too" name="long  for bank country code CN" time="0">
       <failure message="expected &apos;{&quot;error&quot;:&quot;Length of account_number should be between 7 and 11 when bank_country_code is \&apos;US\&apos;&quot;}&apos; to include &apos;Length of account_number should be between 8 and 20 when bank_country_code is \&apos;CN\&apos;&apos;"></failure>
     </testcase>
   </testsuite>
-  <testsuite name="bank endpoint, should return error message for SWIFT code" tests="4" errors="0" failures="0" skipped="0" timestamp="2019-08-04T03:25:12" time="0.164">
-    <testcase classname="bank endpoint, should return error message for SWIFT code" name="is missing" time="0.041">
+  <testsuite name="bank endpoint, should return error message for SWIFT code" tests="4" errors="0" failures="0" skipped="0" timestamp="2019-08-07T07:38:24" time="1.637">
+    <testcase classname="bank endpoint, should return error message for SWIFT code" name="is missing" time="0.383">
     </testcase>
-    <testcase classname="bank endpoint, should return error message for SWIFT code" name="is incorrect" time="0.042">
+    <testcase classname="bank endpoint, should return error message for SWIFT code" name="is incorrect" time="0.793">
     </testcase>
-    <testcase classname="bank endpoint, should return error message for SWIFT code" name="is too long" time="0.038">
+    <testcase classname="bank endpoint, should return error message for SWIFT code" name="is too long" time="0.217">
     </testcase>
-    <testcase classname="bank endpoint, should return error message for SWIFT code" name="is too short" time="0.041">
+    <testcase classname="bank endpoint, should return error message for SWIFT code" name="is too short" time="0.241">
     </testcase>
   </testsuite>
 </testsuites>
