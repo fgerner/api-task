@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": " mocha --timeout 25000 --colors --reporter mocha-jenkins-reporter || true",
-    "bdd":"node ./node_modules/cucumber/bin/cucumber-js ./test/features/bank.feature"
+    "bdd": "node ./node_modules/cucumber/bin/cucumber-js ./test/features/ "
   },
   "keywords": [],
   "author": "Fred Gerner",

@@ -8,6 +8,6 @@ Feature: Bank
     Given service is active
 
   Scenario: I get a 200 response
-    When user sends a valid GET request
+    When user sends a valid POST request
     Then the user gets a 200 status response
     
