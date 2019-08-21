@@ -4,13 +4,14 @@ var supertest = require('supertest'),
   expect = require('chai').expect,
   api = supertest(`http://${process.env.NODE_ENV}.airwallex.com:30001`);
 
+const header = {
+  'Cache-Control': 'no-cache',
+  'Content-Type': 'application/json'
+};
 describe('bank endpoint,', function () {
   it('should return a success message', function (done) {
     api.post('/bank')
-      .set({
-        'Cache-Control': 'no-cache',
-        'Content-Type': 'application/json'
-      })
+      .set(header)
       .send({
         'payment_method': 'SWIFT',
         "bank_country_code": "US",
@@ -26,10 +27,7 @@ describe('bank endpoint,', function () {
   })
   it('should be able to use LOCAL payment method', function (done) {
     api.post('/bank')
-      .set({
-        'Cache-Control': 'no-cache',
-        'Content-Type': 'application/json'
-      })
+      .set(header)
       .send({
         'payment_method': 'LOCAL',
         "bank_country_code": "US",
@@ -46,10 +44,7 @@ describe('bank endpoint,', function () {
   describe('status code', function () {
     it('should return a 200 response', function (done) {
       api.post('/bank')
-        .set({
-          'Cache-Control': 'no-cache',
-          'Content-Type': 'application/json'
-        })
+        .set(header)
         .send({
           'payment_method': 'SWIFT',
           "bank_country_code": "US",
@@ -62,10 +57,7 @@ describe('bank endpoint,', function () {
     })
     it('should return a 400 response', function (done) {
       api.post('/bank')
-        .set({
-          'Cache-Control': 'no-cache',
-          'Content-Type': 'application/json'
-        })
+        .set(header)
         .send({
           'payment_method': 'SWIFT',
           "bank_country_code": "US",
@@ -80,10 +72,7 @@ describe('bank endpoint,', function () {
   describe('should return error message', function () {
     it('when account number is missing', function (done) {
       api.post('/bank')
-        .set({
-          'Cache-Control': 'no-cache',
-          'Content-Type': 'application/json'
-        })
+        .set(header)
         .send({
           'payment_method': 'SWIFT',
           "bank_country_code": "US",
@@ -101,10 +90,7 @@ describe('bank endpoint,', function () {
     })
     it('when aba code is missing for bank country code US', function (done) {
       api.post('/bank')
-        .set({
-          'Cache-Control': 'no-cache',
-          'Content-Type': 'application/json'
-        })
+        .set(header)
         .send({
           'payment_method': 'SWIFT',
           "bank_country_code": "US",
@@ -121,10 +107,7 @@ describe('bank endpoint,', function () {
     })
     it('when aba code is too long for bank country code US', function (done) {
       api.post('/bank')
-        .set({
-          'Cache-Control': 'no-cache',
-          'Content-Type': 'application/json'
-        })
+        .set(header)
         .send({
           'payment_method': 'SWIFT',
           "bank_country_code": "US",
@@ -142,10 +125,7 @@ describe('bank endpoint,', function () {
     })
     it('when bsb code is missing for bank country code AU', function (done) {
       api.post('/bank')
-        .set({
-          'Cache-Control': 'no-cache',
-          'Content-Type': 'application/json'
-        })
+        .set(header)
         .send({
           'payment_method': 'SWIFT',
           "bank_country_code": "AU",
@@ -162,10 +142,7 @@ describe('bank endpoint,', function () {
     })
     it('when country code is missing', function (done) {
       api.post('/bank')
-        .set({
-          'Cache-Control': 'no-cache',
-          'Content-Type': 'application/json'
-        })
+        .set(header)
         .send({
           'payment_method': 'SWIFT',
           "account_name": "John Smith",
@@ -182,10 +159,7 @@ describe('bank endpoint,', function () {
     describe('when account name is', function () {
       it('missing', function (done) {
         api.post('/bank')
-          .set({
-            'Cache-Control': 'no-cache',
-            'Content-Type': 'application/json'
-          })
+          .set(header)
           .send({
             'payment_method': 'SWIFT',
             "bank_country_code": "US",
@@ -203,10 +177,7 @@ describe('bank endpoint,', function () {
       })
       it('too long', function (done) {
         api.post('/bank')
-          .set({
-            'Cache-Control': 'no-cache',
-            'Content-Type': 'application/json'
-          })
+          .set(header)
           .send({
             'payment_method': 'SWIFT',
             "bank_country_code": "US",
@@ -224,10 +195,7 @@ describe('bank endpoint,', function () {
       })
       it('too short', function (done) {
         api.post('/bank')
-          .set({
-            'Cache-Control': 'no-cache',
-            'Content-Type': 'application/json'
-          })
+          .set(header)
           .send({
             'payment_method': 'SWIFT',
             "bank_country_code": "US",
@@ -247,10 +215,7 @@ describe('bank endpoint,', function () {
     describe('when account number is too', function () {
       it('long for bank country code US', function (done) {
         api.post('/bank')
-          .set({
-            'Cache-Control': 'no-cache',
-            'Content-Type': 'application/json'
-          })
+          .set(header)
           .send({
             'payment_method': 'SWIFT',
             "bank_country_code": "US",
@@ -268,10 +233,7 @@ describe('bank endpoint,', function () {
       })
       it('short for bank country code AU', function (done) {
         api.post('/bank')
-          .set({
-            'Cache-Control': 'no-cache',
-            'Content-Type': 'application/json'
-          })
+          .set(header)
           .send({
             'payment_method': 'SWIFT',
             "bank_country_code": "AU",
@@ -290,10 +252,7 @@ describe('bank endpoint,', function () {
       })
       it('long  for bank country code AU', function (done) {
         api.post('/bank')
-          .set({
-            'Cache-Control': 'no-cache',
-            'Content-Type': 'application/json'
-          })
+          .set(header)
           .send({
             'payment_method': 'SWIFT',
             "bank_country_code": "AU",
@@ -312,10 +271,7 @@ describe('bank endpoint,', function () {
       })
       it('short for bank country code CN', function (done) {
         api.post('/bank')
-          .set({
-            'Cache-Control': 'no-cache',
-            'Content-Type': 'application/json'
-          })
+          .set(header)
           .send({
             'payment_method': 'SWIFT',
             "bank_country_code": "CN",
@@ -334,10 +290,7 @@ describe('bank endpoint,', function () {
       })
       it('long  for bank country code CN', function (done) {
         api.post('/bank')
-          .set({
-            'Cache-Control': 'no-cache',
-            'Content-Type': 'application/json'
-          })
+          .set(header)
           .send({
             'payment_method': 'SWIFT',
             "bank_country_code": "CN",
@@ -358,10 +311,7 @@ describe('bank endpoint,', function () {
     describe('for SWIFT code', function () {
       it('is missing', function (done) {
         api.post('/bank')
-          .set({
-            'Cache-Control': 'no-cache',
-            'Content-Type': 'application/json'
-          })
+          .set(header)
           .send({
             'payment_method': 'SWIFT',
             "bank_country_code": "US",
@@ -379,10 +329,7 @@ describe('bank endpoint,', function () {
       })
       it('is incorrect', function (done) {
         api.post('/bank')
-          .set({
-            'Cache-Control': 'no-cache',
-            'Content-Type': 'application/json'
-          })
+          .set(header)
           .send({
             'payment_method': 'SWIFT',
             "bank_country_code": "US",
@@ -401,10 +348,7 @@ describe('bank endpoint,', function () {
       })
       it('is too long', function (done) {
         api.post('/bank')
-          .set({
-            'Cache-Control': 'no-cache',
-            'Content-Type': 'application/json'
-          })
+          .set(header)
           .send({
             'payment_method': 'SWIFT',
             "bank_country_code": "US",
@@ -422,10 +366,7 @@ describe('bank endpoint,', function () {
       })
       it('is too short', function (done) {
         api.post('/bank')
-          .set({
-            'Cache-Control': 'no-cache',
-            'Content-Type': 'application/json'
-          })
+          .set(header)
           .send({
             'payment_method': 'SWIFT',
             "bank_country_code": "US",
