@@ -1,7 +1,7 @@
 Feature: Bank
 
   As a bank service user
-  I need to be able to add my details
+  I need to be able to add my bank details
   In order to do my Business
 
   Background: Bank service is up
